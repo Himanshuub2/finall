@@ -1,11 +1,23 @@
+import {useDispatch,useSelector} from "react-redux"
+import {handleClick} from "../redux/slice.js";
+import {Button} from "@mui/material"
+
+
+
 const Items = ({ item }) => {
+
+
+  const dispatch = useDispatch();
+  
   return (
-    <div style={{ display: "inline-block", flexDirection: "row" }}>
+
+    <div style={{ display: "inline-block", flexDirection: "row" ,margin:"20px 50px 8px 2px",}}>
       <div
         style={{
           border: "2px solid black",
           width: "200px",
-          height: "auto"
+          height: "auto",
+          padding:"0px 0px 15px 0px"
         }}
       >
       <img
@@ -13,11 +25,15 @@ const Items = ({ item }) => {
           style={{ width: "200px", height: "150px" }}
           alt="imageee"
         ></img>
+        <label style = {{fontWeight:"lighter"}}>
         {item.title}
+        </label>
         <br />
-        {item.price}
+        <label style = {{fontWeight:"bolder"}}>
+        {item.price}₹
+        </label> 
         <br />
-        <button >Add to Cart</button>
+        <Button variant ="contained" size="small" style={{background:"black"}} onClick = {()=>dispatch(handleClick({payload:{data1:item,data2:false}}))}>Add to Cart</Button>
       </div>
     </div>
   );
